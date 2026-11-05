@@ -32,4 +32,26 @@ router.get("/:id", async (req, res) => {
   }
 });
 
+router.post("/", async (req, res) => {
+    try {
+        const { name, price, inStock } = req.body;
+
+    if(!name){
+        return res.status(400).json({ message: "Name is required" });
+    }
+    if(!price){
+        return res.status(400).json({ message: "Price is required" });
+    }
+    if(!inStock){
+        return res.status(400).json({ message: "InStock is required" });
+    }
+    }catch (error) {
+        res.status(500).json({
+            message: error.message || "Internal Server Error",
+        });
+    }
+    
+})
+
+
 module.exports = router;
